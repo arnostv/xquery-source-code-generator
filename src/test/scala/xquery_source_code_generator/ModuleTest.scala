@@ -12,7 +12,6 @@ class ModuleTest extends Specification {
        module.renderedSource ===
          """module namespace moduleA = "nsone";
            |
-           |
            |declare function functOne() {
            |  ()
            |};""".stripMargin
@@ -28,11 +27,9 @@ class ModuleTest extends Specification {
       module.renderedSource ===
         """module namespace moduleA = "ns-one";
           |
-          |
           |declare function funOne() {
           |  ()
           |};
-          |
           |declare function funTwo() {
           |  ()
           |};""".stripMargin
