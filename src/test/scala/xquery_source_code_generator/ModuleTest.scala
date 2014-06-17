@@ -7,7 +7,7 @@ class ModuleTest extends Specification {
   "Module" should {
     "contain one empty function" in {
        val function = FunctionBody("functOne")
-       val module = Module("moduleA", "nsone", List(function))
+       val module = Module(NsPrefix("nsone","moduleA"), List(function))
 
        module.renderedSource === """module namespace moduleA = "nsone";
                                    |
