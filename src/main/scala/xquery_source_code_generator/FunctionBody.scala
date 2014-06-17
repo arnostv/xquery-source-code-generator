@@ -5,5 +5,5 @@ case class FunctionBody (name: String) extends SourceRenderer {
    s"""
       |declare function $name() {
       |  ()
-      |}""".stripMargin
+      |};""".stripMargin
 }
