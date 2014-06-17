@@ -6,12 +6,12 @@ case class Module (
   functions: List[FunctionBody]
 ) extends SourceRenderer {
   override def renderedSource: String = {
-    val header = s"""|module namespace ${nsPrefix} = "${namespace}";
+    val header = s"""|module namespace $nsPrefix = "$namespace";
                      |
                      |""".stripMargin
 
     val functionsRendered: List[String] = functions.map(_.renderedSource)
 
-    header + (functionsRendered.mkString("\n"))
+    header + functionsRendered.mkString("\n")
    }
 }
