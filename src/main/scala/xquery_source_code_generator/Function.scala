@@ -9,9 +9,7 @@ case class FunctionBody(name: String, calls: List[FunctionCall] = List()) extend
       if (calls.isEmpty) {
         "  ()"
       } else {
-        val map: List[String] = calls.map(x => "  " + x.namespace.prefix + ":" + x.targetName + "()")
-        val s: String = map.mkString("\n")
-        s
+        calls.map("  " + _.renderedSource).mkString("\n")
       }
 
     declaration + "\n" + callsRendered + "\n};"
@@ -19,4 +17,6 @@ case class FunctionBody(name: String, calls: List[FunctionCall] = List()) extend
 
 }
 
-case class FunctionCall(targetName: String, namespace: NsPrefix)
+case class FunctionCall(targetName: String, namespace: NsPrefix) extends SourceRenderer {
+  override def renderedSource: String = namespace.prefix + ":" + targetName + "()"
+}
