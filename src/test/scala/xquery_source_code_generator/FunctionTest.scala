@@ -12,7 +12,7 @@ class FunctionTest extends org.specs2.mutable.Specification {
       }
 
       "contain function call" in {
-        FunctionBody("funcTwo").copy(calls = List(FunctionCall("functX", NsPrefix("targetNs","n1")))).renderedSource ===
+        FunctionBody("funcTwo").copy(calls = List(FunctionCall("functX", NsPrefix(Namespace("targetNs"),"n1")))).renderedSource ===
          """declare function funcTwo() {
             |  n1:functX()
             |};""".stripMargin

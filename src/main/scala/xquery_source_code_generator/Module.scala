@@ -5,7 +5,7 @@ case class Module (
   functions: List[FunctionBody]
 ) extends SourceRenderer {
   override def renderedSource: String = {
-    val header = s"""|module namespace ${nsPrefix.prefix} = "${nsPrefix.namespace}";
+    val header = s"""|module namespace ${nsPrefix.prefix} = "${nsPrefix.namespace.uri}";
                      |
                      |""".stripMargin
 
