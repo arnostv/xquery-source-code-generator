@@ -1,7 +1,7 @@
 package xquery_source_code_generator
 
 
-class FunctionBodyTest extends org.specs2.mutable.Specification {
+class FunctionTest extends org.specs2.mutable.Specification {
 
   "Function body" should {
       "be empty for function body only with namespace" in {
