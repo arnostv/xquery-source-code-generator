@@ -1,9 +1,10 @@
 package xquery_source_code_generator
 
-case class FunctionBody(name: String, calls: List[FunctionCall] = List()) extends SourceRenderer {
+case class FunctionBody(name: String, calls: List[FunctionCall] = List(), params: Int = 0) extends SourceRenderer {
 
   override def renderedSource: String = {
-    val declaration = s"declare function $name() {"
+    val paramsText = (for (i <- 1 to params) yield ("$par" + i)).mkString(", ")
+    val declaration = s"declare function $name($paramsText) {"
 
     val callsRendered: String =
       if (calls.isEmpty) {

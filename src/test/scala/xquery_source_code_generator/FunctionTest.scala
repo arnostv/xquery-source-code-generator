@@ -17,6 +17,13 @@ class FunctionTest extends org.specs2.mutable.Specification {
             |  n1:functX()
             |};""".stripMargin
       }
+
+      "have required number of parameters" in {
+        FunctionBody(name = "fun1", params = 3).renderedSource ===
+          """declare function fun1($par1, $par2, $par3) {
+            |  ()
+            |};""".stripMargin
+      }
   }
 
 }
