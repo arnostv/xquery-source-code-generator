@@ -5,7 +5,8 @@ class ModuleBuilder(modules:ModuleCollection) {
   def buildModule(nsPrefix: NsPrefix, numberOfFunctions: Int): Module = {
     val functions = for (i: Int <- 1 to numberOfFunctions) yield {
       val funcBuilder = FunctionBuilder(modules)
-      funcBuilder.buildFunction(s"func$i", i % 4)
+      val numberOfParameters = i % 4
+      funcBuilder.buildFunction(s"func${i}p$numberOfParameters", numberOfParameters)
     }
     Module(nsPrefix, functions.toList)
   }
