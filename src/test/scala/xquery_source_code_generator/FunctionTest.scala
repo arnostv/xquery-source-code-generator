@@ -12,15 +12,15 @@ class FunctionTest extends org.specs2.mutable.Specification {
       }
 
       "contain function call" in {
-        FunctionBody("funcTwo").copy(calls = List(FunctionCall("functX", NsPrefix(Namespace("targetNs"),"n1")))).renderedSource ===
+        FunctionBody("funcTwo").copy(calls = List(FunctionCall("functX", NsPrefix(Namespace("targetNs"),"n1"), List()))).renderedSource ===
          """declare function funcTwo() {
             |  n1:functX()
             |};""".stripMargin
       }
 
       "make sequence for result of multiple function calls" in {
-        val call1: FunctionCall = FunctionCall("funct1", NsPrefix(Namespace("targetNs"), "n1"))
-        val call2: FunctionCall = FunctionCall("funct2", NsPrefix(Namespace("targetNs"), "n1"))
+        val call1: FunctionCall = FunctionCall("funct1", NsPrefix(Namespace("targetNs"), "n1"), List())
+        val call2: FunctionCall = FunctionCall("funct2", NsPrefix(Namespace("targetNs"), "n1"), List())
         FunctionBody("funcTwo").copy(calls = List(call1, call2)).renderedSource ===
          """declare function funcTwo() {
             |  (  n1:funct1(),
@@ -32,6 +32,14 @@ class FunctionTest extends org.specs2.mutable.Specification {
         FunctionBody(name = "fun1", params = 3).renderedSource ===
           """declare function fun1($par1, $par2, $par3) {
             |  ()
+            |};""".stripMargin
+      }
+
+      "have required parameters in function call" in {
+        val functionCall: FunctionCall = FunctionCall("funWithPar", NsPrefix(Namespace("targetNs"), "n1"), List("'Hello'", "10"))
+        FunctionBody("funcA").copy(calls = List(functionCall)).renderedSource ===
+          """declare function funcA() {
+            |  n1:funWithPar('Hello', 10)
             |};""".stripMargin
       }
   }

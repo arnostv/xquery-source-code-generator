@@ -21,6 +21,9 @@ case class FunctionBody(name: String, calls: List[FunctionCall] = List(), params
 
 }
 
-case class FunctionCall(targetName: String, namespace: NsPrefix) extends SourceRenderer {
-  override def renderedSource: String = namespace.prefix + ":" + targetName + "()"
+case class FunctionCall(targetName: String, namespace: NsPrefix, params: List[String]) extends SourceRenderer {
+  override def renderedSource: String = {
+    val paramsText = params.mkString(", ")
+    namespace.prefix + ":" + targetName + s"($paramsText)"
+  }
 }

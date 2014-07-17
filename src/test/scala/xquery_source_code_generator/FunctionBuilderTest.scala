@@ -30,7 +30,7 @@ class FunctionBuilderTest extends Specification {
       val functionBuilder = new FunctionBuilder(modules)
       val function = functionBuilder.buildFunction("funcA", 1)
 
-      function === new FunctionBody("funcA", List(FunctionCall("func1", TestData.ns1)), 1)
+      function === new FunctionBody("funcA", List(FunctionCall("func1", TestData.ns1, List("'Par1'"))), 1)
     }
   }
 

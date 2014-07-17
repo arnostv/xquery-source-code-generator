@@ -10,7 +10,8 @@ case class FunctionBuilder(modules: ModuleCollection) {
       for (i <- 1 to numberOfFunctionCalls) yield {
         val module: Module = modules.moduleList(i % modules.moduleList.size)
         val targetFunction: FunctionBody = module.functions(i % module.functions.size)
-        FunctionCall(targetFunction.name, module.nsPrefix)
+        val paramVals = for (i <- 1 to targetFunction.params) yield s"'Par$i'"
+        FunctionCall(targetFunction.name, module.nsPrefix, paramVals.toList)
       }
     } else {
       List()
