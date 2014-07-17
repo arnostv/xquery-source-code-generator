@@ -6,12 +6,15 @@ case class FunctionBody(name: String, calls: List[FunctionCall] = List(), params
     val paramsText = (for (i <- 1 to params) yield ("$par" + i)).mkString(", ")
     val declaration = s"declare function $name($paramsText) {"
 
-    val callsRendered: String =
-      if (calls.isEmpty) {
-        "  ()"
-      } else {
-        calls.map("  " + _.renderedSource).mkString("\n")
-      }
+    def resultSequence: String = {
+      calls.map("  " + _.renderedSource).mkString(",\n")
+    }
+
+    val callsRendered: String = calls.size match {
+      case 0 => "  ()"
+      case 1 => resultSequence
+      case _ => "  (" + resultSequence + ")"
+    }
 
     declaration + "\n" + callsRendered + "\n};"
   }
