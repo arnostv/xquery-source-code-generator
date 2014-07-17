@@ -8,10 +8,11 @@ case class FunctionBuilder(modules: ModuleCollection) {
 
     val calls = if (modules.moduleList.size > 0) {
       for (i <- 1 to numberOfFunctionCalls) yield {
-        val module: Module = modules.moduleList(i % modules.moduleList.size)
-        val targetFunction: FunctionBody = module.functions(i % module.functions.size)
-        val paramVals = for (i <- 1 to targetFunction.params) yield s"'Par$i'"
-        FunctionCall(targetFunction.name, module.nsPrefix, paramVals.toList)
+        val randomTargetModule: Module = modules.moduleList(i % modules.moduleList.size)
+        val randomTargetFunction: FunctionBody = randomTargetModule.functions(i % randomTargetModule.functions.size)
+
+        val paramVals = for (i <- 1 to randomTargetFunction.params) yield s"'Par$i'"
+        FunctionCall(randomTargetFunction.name, randomTargetModule.nsPrefix, paramVals.toList)
       }
     } else {
       List()
