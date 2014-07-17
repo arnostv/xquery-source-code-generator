@@ -11,6 +11,12 @@ object QXApp {
     val module2: Module = buildNewModule(collection, "ns2")
     println(module2.renderedSource)
 
+    val module3: Module = buildNewModule(collection, "ns3")
+    println(module3.renderedSource)
+
+    val module4: Module = buildNewModule(collection, "ns4")
+    println(module4.renderedSource)
+
 
 
   }
