@@ -8,7 +8,19 @@ class ModuleBuilder(modules:ModuleCollection) {
       val numberOfParameters = i % 4
       funcBuilder.buildFunction(s"func${i}p$numberOfParameters", numberOfParameters)
     }
-    Module(nsPrefix, functions.toList)
+    val module: Module = Module(nsPrefix, functions.toList)
+    modules.registerModule(module)
+    module
+  }
+
+  def buildBunchOfModules(numberOfModules: Int): Seq[Module] = {
+    val nsGenerator = new NamespaceGenerator
+    for (i <- 1 to numberOfModules) yield {
+      val nsPrefix = nsGenerator.nextNamespace
+      val numberOfFunction = 3 + (i % numberOfModules)
+
+      buildModule(nsPrefix, numberOfFunction)
+    }
   }
 
 }
