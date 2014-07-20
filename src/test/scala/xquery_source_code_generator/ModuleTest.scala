@@ -47,8 +47,8 @@ class ModuleTest extends Specification {
       module.renderedSource ===
         """module namespace moduleA = "ns-one";
           |
-          |import module namespace ns1 "my://ns1";
-          |import module namespace ns2 "my://ns2";
+          |import module namespace ns1 = "my://ns1";
+          |import module namespace ns2 = "my://ns2";
           |
           |declare function funOne() {
           |  (  ns1:func1(),

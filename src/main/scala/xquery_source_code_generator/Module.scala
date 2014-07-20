@@ -12,7 +12,7 @@ case class Module (
 
     val imports = for (ns <- calledNs) yield {
       val q = '"'
-      s"import module namespace ${ns.prefix} $q${ns.namespace.uri}$q;"
+      s"import module namespace ${ns.prefix} = $q${ns.namespace.uri}$q;"
     }
 
     val importsStr = if (imports.size>0) imports.mkString("\n","\n", "\n")  else ""
