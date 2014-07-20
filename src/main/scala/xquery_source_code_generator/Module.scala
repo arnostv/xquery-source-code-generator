@@ -19,6 +19,8 @@ case class Module (
 
     val header = s"""|module namespace ${nsPrefix.prefix} = "${nsPrefix.namespace.uri}";
                      |$importsStr
+                     |declare default function namespace "${nsPrefix.namespace.uri}";
+                     |
                      |""".stripMargin
 
     val functionsRendered: List[String] = functions.map(_.renderedSource)

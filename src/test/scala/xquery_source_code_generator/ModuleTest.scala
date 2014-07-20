@@ -12,6 +12,8 @@ class ModuleTest extends Specification {
        module.renderedSource ===
          """module namespace moduleA = "nsone";
            |
+           |declare default function namespace "nsone";
+           |
            |declare function functOne() {
            |  ()
            |};""".stripMargin
@@ -26,6 +28,8 @@ class ModuleTest extends Specification {
 
       module.renderedSource ===
         """module namespace moduleA = "ns-one";
+          |
+          |declare default function namespace "ns-one";
           |
           |declare function funOne() {
           |  ()
@@ -50,6 +54,8 @@ class ModuleTest extends Specification {
           |
           |import module namespace ns1 = "my://ns1";
           |import module namespace ns2 = "my://ns2";
+          |
+          |declare default function namespace "ns-one";
           |
           |declare function funOne() {
           |  (  ns1:func1(),

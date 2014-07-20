@@ -6,7 +6,7 @@ class NamespaceGenerator {
 
   def nextNamespace: NsPrefix = {
     nsCounter = nsCounter + 1
-    NsPrefix(Namespace(s"my://ns$nsCounter"), s"ns$nsCounter")
+    NsPrefix(Namespace(s"ns$nsCounter.xq"), s"ns$nsCounter")
   }
 
 }

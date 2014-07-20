@@ -4,6 +4,8 @@ import java.io.{File, FileWriter}
 
 object QXApp {
 
+  val numberOfModules: Int = 10
+
   val generatorRootDirectory = cleanGeneratedOutputDir()
 
   def cleanGeneratedOutputDir() = {
@@ -24,7 +26,7 @@ object QXApp {
     val collection = new ModuleCollection
 
     val builder = new ModuleBuilder(collection)
-    val modules: Seq[Module] = builder.buildBunchOfModules(4)
+    val modules: Seq[Module] = builder.buildBunchOfModules(numberOfModules)
 
     for (module <- modules) {
       println(module.nsPrefix.namespace)
@@ -39,7 +41,7 @@ object QXApp {
     def nsPrefixToFile(nsPrefix: NsPrefix): File = {
       val last = nsPrefix.namespace.uri.split("/").last
 
-      new File(generatorRootDirectory, last + ".xq")
+      new File(generatorRootDirectory, last)
     }
 
   }
