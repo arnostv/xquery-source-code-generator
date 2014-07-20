@@ -30,6 +30,7 @@ class ModuleTest extends Specification {
           |declare function funOne() {
           |  ()
           |};
+          |
           |declare function funTwo() {
           |  ()
           |};""".stripMargin

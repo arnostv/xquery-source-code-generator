@@ -23,6 +23,6 @@ case class Module (
 
     val functionsRendered: List[String] = functions.map(_.renderedSource)
 
-    header + functionsRendered.mkString("\n")
+    header + functionsRendered.mkString("\n\n")
    }
 }
